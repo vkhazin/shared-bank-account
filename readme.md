@@ -11,6 +11,10 @@
 ### User
 
 * UserId: uuid, PK
+* FirstName: nvarchar(128)
+* MiddleName: nvarchar(128)
+* LastName: nvarchar(128)
+* DOB: date
 * ...
 
 ### Account User
@@ -72,23 +76,25 @@ Comments: Timestamp can be used to preserve history of limits where the latest r
   ```
 * get(account_id: str, admin_user_id: str): dict
   ```
-  * User id must be on the account user list with type == Administrator
+  * User id must be 'active' on the account user list with type == Administrator
   ```
 * update(account_id: str, admin_user_id: str, account_details: dict): dict
 * close(account_id: str, admin_user_id: str)
 * deposit_funds(account_id: str, user_id, amount: float)
   ```
-    * User must be on the list of account users for the account
+    * User must be 'active' on the list of account users for the account
   ```
 * withdraw_funds(account_id: str, user_id, amount: float): dict
   ```
     * User must not exceed limit as defined in the withdraw limits
-    * Withdraw limit is compared to the total of all transactions for the given user for the day, week, or month
+    * Withdraw limit is compared to the total of all transactions 
+      for the given user for the day, week, or month
   ```  
 * view_available_balance(account_id: str, user_id: str): dict
   ```
     * Available balance is a delta between withdraw limits
-    * And total sum of withdraw transaction for the given user and account for the day, week, or month
+    * And total sum of withdraw transaction for the given user and account 
+      for the day, week, or month
   ```
 * view_transaction_history(**kwargs): list of dict
   ```
@@ -107,13 +113,14 @@ Comments: Timestamp can be used to preserve history of limits where the latest r
   ```
   account_id
   admin_user_id
-  user_id: validate the user is on the list of account users
+  user_id: validate the user is on the list of account users and is active
   limit_type: daily, weekly, or monthly
   amount: verify the value is positive
   ```
 * add_user(account_id: str, admin_user_id: str, user: dict)
   ```
-  * Cannot add user to an account where user is not on the list of organization users for the account owner
+  * Cannot add user to an account where user is not on the list of 
+    organization users for the account owner
   ```
 * get_users(account_id: str, admin_user_id: str)
 * remove_user(account_id: str, admin_user_id: str, user_id: str)
