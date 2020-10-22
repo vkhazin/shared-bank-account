@@ -1,6 +1,6 @@
 # Shared Bank Account
 
-## RDBMS Database
+## RDBMS Schema
 
 ### Account
 
@@ -67,7 +67,13 @@ Comments: Timestamp can be used to preserve history of limits where the latest r
 #### Methods
 
 * open(admin_user_id: str, account: dict): dict
+  ```
+  * User id will be added to account user as admin
+  ```
 * get(account_id: str, admin_user_id: str): dict
+  ```
+  * User id must be on the account user list with type == Administrator
+  ```
 * update(account_id: str, admin_user_id: str, account_details: dict): dict
 * close(account_id: str, admin_user_id: str)
 * deposit_funds(account_id: str, user_id, amount: float)
