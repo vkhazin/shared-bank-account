@@ -87,22 +87,27 @@ Comments: Timestamp can be used to preserve history of limits where the latest r
 * view_transaction_history(**kwargs): list of dict
   ```
     account_id
-    user_id: based on whether user is an admin or standard apply different filter
-    start_date
-    end_date
+    user_id: based on whether user is an admin or standard - apply different filter
+    start_date: to filter the history, today is default
+    end_date: to filter the history, None is a default
+    transaction_type: to filter the history
+    max_records: default 100, max limit is enforced
   ```
-* get_withdraw_limits(account_id: str, admin_user_id: str, user_id: str)
+* get_withdraw_limits(account_id: str, admin_user_id: str, user_id: str): list of dict
+  ```
+    Assumption: the list is relatively short and historical records are not required
+  ```
 * set_withdraw_limits(**kwargs)
   ```
   account_id
   admin_user_id
-  user_id
-  limit_type
-  amount
+  user_id: validate the user is on the list of account users
+  limit_type: daily, weekly, or monthly
+  amount: verify the value is positive
   ```
 * add_user(account_id: str, admin_user_id: str, user: dict)
   ```
-  * cannot add user to an account where user is not on the list of organization users for the account owner
+  * Cannot add user to an account where user is not on the list of organization users for the account owner
   ```
 * get_users(account_id: str, admin_user_id: str)
 * remove_user(account_id: str, admin_user_id: str, user_id: str)
