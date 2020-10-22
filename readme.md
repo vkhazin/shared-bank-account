@@ -8,7 +8,7 @@
 * Owner: uuid FK to Organization
 * ...
 
-#### User
+### User
 
 * UserId: uuid, PK
 * ...
@@ -51,7 +51,7 @@ Comments: Timestamp can be used to preserve history of limits where the latest r
 * UserId: uuid, FK
 * ...
 
-* Audit Trail
+### Audit Trail
 
 * TableName: string
 * UserId: uuid
@@ -93,6 +93,13 @@ Comments: Timestamp can be used to preserve history of limits where the latest r
   ```
 * get_withdraw_limits(account_id: str, admin_user_id: str, user_id: str)
 * set_withdraw_limits(**kwargs)
+  ```
+  account_id
+  admin_user_id
+  user_id
+  limit_type
+  amount
+  ```
 * add_user(account_id: str, admin_user_id: str, user: dict)
   ```
   * cannot add user to an account where user is not on the list of organization users for the account owner
